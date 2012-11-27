@@ -9,7 +9,7 @@ if len(sys.argv) != 1:
     print >>sys.stderr, 'Usage: %s < manifest.json' % sys.argv[0]
     sys.exit(1)
 
-APP_ID = 'nknjamdijihneiclbpmcmfklakjkgdpf'
+APP_ID = 'kaagoiiakipocenbkhmcmbnldkbphcbn'
 codebase = (
     'https://fluiddb.fluidinfo.com/about/open-it-later/fluidinfo.com/chrome.crx')
 
