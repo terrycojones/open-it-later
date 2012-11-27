@@ -26,32 +26,43 @@ var TC = {
                 this.updateMenuItem();
             }
             else {
-                console.log('url ' + url + ' is scheduled to be opened, but not now!');
-                chrome.tabs.remove(tab.id);
+                // Remove the tab, if safe (i.e., without killing the browser).
+                chrome.tabs.query({}, function(tabs){
+                    if (tabs.length > 1){
+                        console.log('url ' + url +
+                                    ' is scheduled to be opened, but not now!');
+                        chrome.tabs.remove(tab.id);
+                    }
+                });
             }
         }
         else {
-            // Unscheduled URL. Schedule it and remove the existing tab.
-            var delta = 1000 * (
-                this.minWait + Math.random() * (this.maxWait - this.minWait));
-            console.log(url + ' will be opened in ' + (delta / 1000) + ' seconds.');
-            var timeout = setTimeout(
-                function(){
-                    this.urls[url].timeout = null;
-                    chrome.tabs.create({
-                        active: false,
-                        url: url
-                    });
-                }.bind(this),
-                delta);
-            this.urls[url] = {
-                scheduledAt: now,
-                timeout: timeout,
-                when: now + delta
-            };
-            this.pendingCount++;
-            this.updateMenuItem();
-            chrome.tabs.remove(tab.id);
+            chrome.tabs.query({}, function(tabs){
+                // Unscheduled URL. Schedule it and remove the existing tab
+                // if safe.
+                if (tabs.length > 1){
+                    var delta = 1000 * (
+                        this.minWait + Math.random() * (this.maxWait - this.minWait));
+                    console.log(url + ' will be opened in ' + (delta / 1000) + ' seconds.');
+                    var timeout = setTimeout(
+                        function(){
+                            this.urls[url].timeout = null;
+                            chrome.tabs.create({
+                                active: false,
+                                url: url
+                            });
+                        }.bind(this),
+                        delta);
+                    this.urls[url] = {
+                        scheduledAt: now,
+                        timeout: timeout,
+                        when: now + delta
+                    };
+                    this.pendingCount++;
+                    this.updateMenuItem();
+                    chrome.tabs.remove(tab.id);
+                }
+            });
         }
     },
 

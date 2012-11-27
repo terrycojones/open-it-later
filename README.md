@@ -31,6 +31,9 @@ https://fluiddb.fluidinfo.com/about/open-it-later/fluidinfo.com/chrome.crx
 You can change the minimum and maximum wait times (`TC.minWait` and
 `TC.minWait`) in background.js
 
+The extension only operates when you have more than one tab open.
+Otherwise, killing the only existing tab will close the browser.
+
 Look at the console log for the extension background page to see when URLs
 you try to open will actually be opened.  To see the console, go to
 `chrome://extensions` and click the `_generated_background_page.html` link
