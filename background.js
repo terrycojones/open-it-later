@@ -62,7 +62,7 @@ var TC = {
                     this.updateMenuItem();
                     chrome.tabs.remove(tab.id);
                 }
-            });
+            }.bind(this));
         }
     },
 
