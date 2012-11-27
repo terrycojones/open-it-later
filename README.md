@@ -2,7 +2,7 @@
 
 When you click on any link, or open a tab for new URL, the current tab will
 immediately be closed and the desired URL will be displayed in a new tab at
-some random point in the future.
+some random point in the future (at least 15 seconds, at most 5 minutes).
 
 The extension installs a (right-click) context menu that lets you disable
 it. On disable, all pending URLs will immediately be opened in the order
@@ -28,8 +28,8 @@ https://fluiddb.fluidinfo.com/about/open-it-later/fluidinfo.com/chrome.crx
 
 ## Internals
 
-Change the minimum and maximum wait times (`TC.minWait` and `TC.minWait`)
-in background.js
+You can change the minimum and maximum wait times (`TC.minWait` and
+`TC.minWait`) in background.js
 
 Look at the console log for the extension background page to see when URLs
 you try to open will actually be opened.  To see the console, go to
