@@ -1,11 +1,12 @@
 {
   "name": "Open it later",
-  "version": "0.0.31",
+  "version": "0.0.51",
   "description": "When you click on links, they are opened in a tab at some random time in the future",
   "update_url": "https://fluiddb.fluidinfo.com/about/open-it-later/fluidinfo.com/chrome-update.xml",
   "manifest_version": 2,
   "permissions": [
     "<all_urls>",
+    "contextMenus",
     "tabs"
   ],
   "background": {
